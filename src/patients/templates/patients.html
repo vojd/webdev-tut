@@ -1,0 +1,20 @@
+<h2>Patients</h2>
+<h1>.hhe</h1>
+<table class="table">
+    <tr>
+        <th>Avatar</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+    </tr>
+
+    <tr ng-repeat="patient in patients">
+        <td><a href="#patients/{{patient.id}}"><img ng-src="{{patient.image}}" /></a></td>
+        <td>{{patient.lastName}} {{patient.firstName}}</td>
+        <td>
+            {{patient.address.streetAddress}}
+            {{patient.address.zipCode}}
+        </td>
+        <td>{{patient.address.city}}</td>
+    </tr>
+</table>
