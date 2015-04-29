@@ -3,39 +3,36 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>SPA workshop</title>
-    <link rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" />
+
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SPA Workshop</a>
-            </div>
 
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#/patients">Patients</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="#/">Home</a></li>
+                <li role="presentation"><a href="#/patients">Patients</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">AppGroup SPA workshop</h3>
+    </div>
 
-    <div class="container">
 
-        <div ng-view></div>
+    <div ng-view class="row marketing">
 
     </div>
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <footer class="footer">
+        <p>Some footer information</p>
+    </footer>
+
+</div> <!-- /container -->
+
+
     <script src="bundle.js"></script>
 </body>
 </html>

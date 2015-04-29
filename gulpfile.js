@@ -4,8 +4,8 @@ var gulp = require('gulp'),
     webpack = require('gulp-webpack'),
     webpackConfig = require('./webpack.config.js'),
     WebpackDevServer = require("webpack-dev-server"),
-
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    exec = require('child_process').exec;
 
 var paths = {
   src: './src',
@@ -13,7 +13,7 @@ var paths = {
 };
 
 gulp.task('webpack', function () {
-  return gulp.src(path.join(paths.src, '**', '*.*'))
+  return gulp.src(path.join(paths.src, '**', '*.js'))
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest(paths.dest))
     .pipe(connect.reload());
@@ -36,16 +36,14 @@ gulp.task("serve", function(callback) {
 
 gulp.task('html', function(){
   return gulp.src('src/**/*.html')
-    .pipe(gulp.dest(paths.dest));
+    .pipe(gulp.dest(paths.dest))
+    .pipe(connect.reload());
 });
 
 gulp.task('watch', function () {
-  watch([
-    'src/**/*.js',
-    'src/**/*.html'
-  ], function () {
-    gulp.start('webpack');
-  });
+
+  gulp.watch(['src/**/*.js'], ['webpack']);
+  gulp.watch(['src/**/*.html'], ['html']);
 });
 
 gulp.task('connect', function () {
@@ -55,5 +53,13 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('default', ['html', 'webpack', 'watch', 'connect'], function () {
+gulp.task('run-api-server', function (cb) {
+  exec('node server.js', function(err, stdout, stderr){
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+gulp.task('default', ['html', 'webpack', 'watch', 'connect', 'run-api-server'], function () {
 });

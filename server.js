@@ -5,7 +5,7 @@ var express = require('express'),
     _ = require('lodash');
 
 function generatePatients(nofPatients){
-  return _.map(_.range(nofPatients), function (i) {
+  return _.map(_.range(1, nofPatients+1), function (i) {
     return {
       id: i,
       firstName: faker.name.firstName(),
@@ -30,7 +30,23 @@ app.get('/patients', function(req, res) {
   res.send(patients);
 });
 
+app.get('/patients/:id([0-9+])', function (req, res) {
+  console.log(req.headers);
+  res.send(_.filter(patients, function(patient){
+    return patient.id.toString() === req.params.id;
+  }))
+});
 
+app.put('/patients/:id([0-9+])', function (req, res) {
+  console.log('GOT PUT', res.body);
+  patient = _.filter(patients, function(patient){
+    return patient.id.toString() === req.params.id;
+  })[0];
+
+  // echo
+  res.sendStatus(200);
+
+});
 
 var server = app.listen(3000, function() {
   console.log('Express is listening to http://localhost:3000');
