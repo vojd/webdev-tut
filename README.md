@@ -17,15 +17,15 @@ the Node Package Manager.
 
 
 #### Build the project 
-```shell
+``shell
 cd /path/to/webdev-tut
-npm install```
+npm install``
 
-#### Run the projet
-```shell
+#### Run the project
+``shell
 cd /path/to/webdev-tut
 gulp
-```
+``
 
 The backend server is now running at [localhost:3000](localhost:3000) 
 and the web application can be seen at [localhost:8080](localhost:8080)
